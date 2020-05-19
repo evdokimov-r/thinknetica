@@ -1,10 +1,10 @@
-puts "Это программа - узнай свой идеальный вес"
-puts "Введите Ваше имя"
+puts 'Это программа - узнай свой идеальный вес' #поменял на одинарные кавычки
+puts 'Введите Ваше имя' #поменял на одинарные кавычки
 first_name = gets.chomp
-puts "Введите свой рост"
-user_height = gets.chomp
-if user_height.to_i > 110
-  puts "#{first_name.capitalize}, Ваш идеальный вес - #{(user_height.to_i - 110)*1.15}кг."
+puts 'Введите свой рост' #поменял на одинарные кавычки
+user_height = gets.chomp.to_i #перевел сразу в integer
+if user_height > 110
+  puts "#{first_name.capitalize}, Ваш идеальный вес - #{(user_height - 110) * 1.15}кг." #добавил пробелы в
 else
-  puts "Ваш вес уже оптимальный."
+  puts 'Ваш вес уже оптимальный.' #поменял на одинарные кавычки
 end
