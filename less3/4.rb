@@ -1,16 +1,9 @@
-letters = ['a', 'e', 'i', 'o', 'u', 'y']
-numbers = [1, 5, 9, 15, 21, 25]
+alphabet = ('a'..'z').to_a
 
-l = 0
-n = 0
+vowel = ['a', 'e', 'i', 'o', 'u', 'y']
 
 procedure = {}
 
-loop do
-  procedure[letters[l]] = numbers[n]
-  l += 1
-  n += 1
-  break if n > 6
-end
+alphabet.each_with_index { |v, index| procedure[v] = (index + 1) if vowel.include? v}
 
-print procedure.compact
+print procedure

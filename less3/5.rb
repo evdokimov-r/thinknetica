@@ -5,10 +5,7 @@ month = gets.chomp.to_i
 puts 'Введите год'
 year = gets.chomp.to_i
 
-if (year % 4) == 0 && (year % 100) != 0
-  february = 29
-elsif 
-  (year % 4) == 0 && (year % 100) == 0 && (year % 400) == 0 
+if ((year % 4) == 0 && (year % 100) != 0) || (year % 4) == 0 && (year % 100) == 0 && (year % 400) == 0 
   february = 29
 else 
   february = 28
@@ -16,15 +13,9 @@ end
 
 days_in_month = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-n = 0 
-whole_days = []
-whole_days.push(day)
+sum_days = days_in_month.take(month - 1).sum
+puts "Дней с начала года: #{sum_days + day}"
 
-while n <= (month - 1) do
-  whole_days.push(days_in_month[n])
-  n += 1
-end
-puts "Дней с начала года #{whole_days.sum}" 
 if february == 29
   puts "#{year} год високосный"
 else
