@@ -34,15 +34,15 @@ class Train
   end
 
    def show_next_station
-    @route.stations[@current_station_index + 1]
+    @route.stations[@current_station_index + 1] if @current_station_index != @route.stations.size - 1
   end
 
   def show_prev_station
-    @route.stations[@current_station_index - 1]
+    @route.stations[@current_station_index - 1] if @current_station_index != 0
   end
 
   def go_next_station
-    go(next_station_index) if 
+    go(next_station_index)
   end
 
   def go_prev_station
@@ -52,16 +52,17 @@ class Train
   private 
 
   def next_station_index
-    @current_station_index + 1
+    @current_station_index + 1 if @current_station_index && @current_station_index != @route.stations.length - 1
   end
 
   def prev_station_index
-    @current_station_index - 1
+    @current_station_index - 1 if @current_station_index && @current_station_index != 0
   end
 
   def go(station_index)
     @route.stations[@current_station].send_train(self)
-    @route.stations[station_index].get_train(self)
+    
     @current_station_index = station_index
+    @route.stations[station_index].get_train(self)
   end
 end

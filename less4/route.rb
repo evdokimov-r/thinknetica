@@ -15,8 +15,4 @@ class Route
     @stations.delete(station)
   end
 
-  def view_stations_on_route
-    @stations  #.each { |s| print s}
-  end
-
 end
