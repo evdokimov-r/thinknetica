@@ -29,8 +29,8 @@ class Train
 
   def get_route(route)
     @route = route
-    @current_station = 0
-    @route.stations[@current_station]
+    @current_station = route.stations.first
+    @current_station.get_train(self)
   end
 
   def to_next_station

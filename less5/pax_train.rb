@@ -1,7 +1,7 @@
 require_relative 'train'
-class PaxTrain < Train
+class PassengerTrain < Train
   def initialize(number)
     super
-    @type = :cargo
+    @type = :pax
   end
 end

@@ -180,7 +180,7 @@ class RailGame
         train = CargoTrain.new(name)
         @trains.push(train)
       when '2'
-        train = PaxTrain.new(name)
+        train = PassengerTrain.new(name)
         @trains.push(train)
       when '0'
         main_menu
@@ -214,10 +214,9 @@ class RailGame
 
   def go_train
     puts 'Выберите поезд'
-    @trains.each_with_index { |train, index| puts "#{index} #{train.number}" }
-    choise_train = @trains[gets.chomp.to_i]
+    select_train = choise_trains
 
-    if choise_train.route.nil? 
+    if select_train.route.nil? 
       puts 'У поезда нет маршрута' 
       menu_trains
     end
@@ -228,9 +227,9 @@ class RailGame
     answer = gets.chomp
     case answer
       when '1'
-        choise_train.to_next_station
+        select_train.to_next_station
       when '2'
-        choise_train.to_prev_station
+        select_train.to_prev_station
       else
         puts 'Неверный выбор, попробуйте еще раз'
     end
@@ -277,24 +276,24 @@ class RailGame
   end
 
   def choise_stations
-    @stations.each_with_index { |station, index| puts "#{index} - #{station.name}" }
+    @stations.each_with_index { |station, index| puts "#{index + 1} - #{station.name}" }
     @stations[gets.chomp.to_i]
   end
 
   def choise_trains
-    @trains.each_with_index { |train, index| puts "#{index} - #{train.number}" }
+    @trains.each_with_index { |train, index| puts "#{index + 1} - #{train.number}" }
     @trains[gets.chomp.to_i]
   end
 
   def choise_routes
     @routes.each_with_index do |route, index|
-      puts "#{index}: #{route.first_station.name} - #{route.last_station.name}"
+      puts "#{index + 1}: #{route.first_station.name} - #{route.last_station.name}"
     end
     @routes[gets.chomp.to_i]
   end
 
   def choise_route_station(route)
-    route.stations.each_with_index { |station, index| puts "#{index} #{station.name}" }
+    route.stations.each_with_index { |station, index| puts "#{index + 1} #{station.name}" }
     route.stations[gets.chomp.to_i]
   end
 
@@ -333,7 +332,7 @@ class RailGame
   end 
 
   def choise_route_station(route)
-    route.stations.each_with_index { |station, index| puts "#{index} #{station.name}" }
+    route.stations.each_with_index { |station, index| puts "#{index + 1} #{station.name}" }
     route.stations[gets.chomp.to_i]
   end
 
@@ -362,8 +361,8 @@ class RailGame
   def add_wagon
     puts 'Выберите поезд для добавления вагона'
     train = choise_trains
-    train.add_wagon(PaxWagon.new) if train.type == :pax
-    train.add_wagon(CargoWagon.new) if train.type == :cargo    
+    train.add_wagon(PassengerWagon.new)
+    train.add_wagon(CargoWagon.new)
     puts "Вагон добавлен"
     main_menu
   end
