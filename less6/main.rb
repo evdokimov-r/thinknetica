@@ -6,6 +6,7 @@ require_relative 'route'
 require_relative 'station'
 require_relative 'train'
 require_relative 'wagon'
+require_relative 'instance_counter.rb'
 
 class RailGame
   attr_reader :stations, :wagons, :trains, :routes
